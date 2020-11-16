@@ -2,7 +2,7 @@ import {Dispatch} from "redux";
 import {getfp} from "../Tools/FingerPrint";
 
 type ActionType = SetDataAT
-type FingerPrintType = {
+/*type FingerPrintType = {
     audio: {
         value: number
         duration: number
@@ -125,11 +125,15 @@ type FingerPrintType = {
         value: string
         duration: number
     }
+}*/
+type FingerPrintType={
+    visitorId:string
+}
+let initialState:FingerPrintType = {
+    visitorId:""
 }
 
-let initialState = {}
-
-export const fingerPrintReducer = (state = initialState, action: ActionType) => {
+ const fingerPrintReducer = (state:FingerPrintType = initialState, action: ActionType):FingerPrintType => {
     switch (action.type) {
         case SET_DATA: {
             return {
@@ -139,7 +143,6 @@ export const fingerPrintReducer = (state = initialState, action: ActionType) => 
         }
         default:
             return state
-
     }
 }
 //--------------------------------------SET-DATA-AC-------------------------------
@@ -148,16 +151,12 @@ type SetDataAT = {
     type: typeof SET_DATA
     payload: FingerPrintType
 }
-export const setDataAC = (payload: any): SetDataAT => ({
+ const setDataAC = (payload: any): SetDataAT => ({
     type: SET_DATA,
     payload: payload
 })
 //--------------------------------------SET-INITIALIZED-TC-------------------------------
-export const setFingerPrintTC = () => async (dispatch: Dispatch) => {
+ const setFingerPrintTC = () => async (dispatch: Dispatch) => {
     let fingerPrint = await getfp()
-    console.log(fingerPrint)
-
     dispatch(setDataAC(fingerPrint))
-
-
 }

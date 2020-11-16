@@ -30,10 +30,10 @@ class App extends React.Component<AppPropsType> {
 
         return (
             <div>
-                <div>{`Ваш IP адрес : ${this.props.ip}`}</div>
+               {/* <div>{`Ваш IP адрес : ${this.props.ip}`}</div>
                 <div>{`Имя вашего компьютера : ${this.props.ipName}`}</div>
                 <div>{`Ваше местоположение: : ${this.props.country}, ${this.props.city}`}</div>
-                <div>{`Ваш провайдер : ${this.props.provider}`}</div>
+                <div>{`Ваш провайдер : ${this.props.provider}`}</div>*/}
                 <div>{`Количество посещений : ${this.props.viewCount}`}</div>
             </div>
         );
@@ -42,12 +42,12 @@ class App extends React.Component<AppPropsType> {
 
 const mapStateToProps = (store: StateType) => ({
     initialized: store.app.initialized,
-    ip: store.ipInfo.query,
-    ipName: store.ipInfo.ipName,
-    viewCount: store.viewCount.count,
-    city: store.ipInfo.region,
-    country: store.ipInfo.country,
-    provider: store.ipInfo.org
+    ip: store.app.ipInfo.query,
+    ipName: store.app.ipInfo.ipName,
+    viewCount: store.app.viewCount,
+    city: store.app.ipInfo.region,
+    country: store.app.ipInfo.country,
+    provider: store.app.ipInfo.org
 })
 
 export default connect(mapStateToProps, {setInitializedTC})(App)

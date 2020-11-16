@@ -1,8 +1,7 @@
 import axios from "axios"
-import {UsersType} from "../../BLL/reducers/usersReducer";
 
 export const UserAPI = {
-    async getData() {
+  /*  async getData() {
         let response = await axios.get(`https://extreme-ip-lookup.com/json`)
         return response.data
     },
@@ -10,8 +9,8 @@ export const UserAPI = {
         let response = await axios.get(`https://counter-d86e4.firebaseio.com/count.json`)
         return response.data
     },
-    async incrementCount(num: number) {
-        let response = await axios.put(`https://counter-d86e4.firebaseio.com/count.json`, {count: num})
+    async incrementCount(value: number) {
+        let response = await axios.put(`https://counter-d86e4.firebaseio.com/count.json`, {count: value})
         return response.data
     },
 
@@ -22,5 +21,18 @@ export const UserAPI = {
     async getUsersInfo(){
         let response = await axios.get(`https://counter-d86e4.firebaseio.com/userDdata.json`)
         return response.data
-    }
+    },*/
+    /*---------------------------------------------------*/
+ /*   async test(ViewCounter:any){
+        let response = await axios.put(`https://counter-d86e4.firebaseio.com/App.json`, {ViewCounter})
+        return response.data
+    },*/
+    async getData(){
+        let response = await axios.get(`https://counter-d86e4.firebaseio.com/App.json`)
+        return response.data.ViewCounter
+    },
+    async getIpData() {
+        let response = await axios.get(`https://extreme-ip-lookup.com/json`)
+        return response.data
+    },
 }

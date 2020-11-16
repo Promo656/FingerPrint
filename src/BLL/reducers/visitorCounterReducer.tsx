@@ -1,7 +1,6 @@
 import {Dispatch} from "redux";
 import {UserAPI} from "../../DAL/API/api";
 import {StateType} from "../Store/redux-store";
-import {getfp} from "../Tools/FingerPrint";
 
 type ActionType = SetDataAT
 
@@ -12,7 +11,7 @@ let initialState: ViewCountType = {
     count: 0
 }
 
-export const viewCounterReducer = (state: ViewCountType = initialState, action: ActionType): ViewCountType => {
+ const viewCounterReducer = (state: ViewCountType = initialState, action: ActionType): ViewCountType => {
     switch (action.type) {
         case SET_DATA: {
             return {
@@ -31,23 +30,21 @@ type SetDataAT = {
     type: typeof SET_DATA
     payload: ViewCountType
 }
-export const setCountDataAC = (payload: ViewCountType): SetDataAT => ({
+ const setCountDataAC = (payload: ViewCountType): SetDataAT => ({
     type: SET_DATA,
     payload: payload
 })
 //--------------------------------------SET-INITIALIZED-TC-------------------------------
-export const setViewCountDataTC = () => async (dispatch: Dispatch, getState: () => StateType) => {
+ const setViewCountDataTC = () => async (dispatch: Dispatch, getState: () => StateType) => {
 
-    let viewCountData = await UserAPI.getViewCountData()
+/*    const viewCountData = await UserAPI.getViewCountData()
     dispatch(setCountDataAC(viewCountData))
 
-    let response
-
-
-
-    const count = getState().viewCount.count += 1
-    await UserAPI.incrementCount(count)
-
-    dispatch(setCountDataAC(viewCountData))
-
+    const newId = getState().fingerPrintInfo.visitorId
+    let filteredArray = getState().usersInfo.users.filter(el => el.id === newId)
+debugger
+    if (filteredArray.length === 0) {
+        const count = getState().viewCount.count += 1
+        await UserAPI.incrementCount(count)
+    }*/
 }

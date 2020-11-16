@@ -39,7 +39,7 @@ let initialState: DataType = {
     status: ""
 }
 
-export const dataReducer = (state: DataType = initialState, action: ActionType): DataType => {
+ const dataReducer = (state: DataType = initialState, action: ActionType): DataType => {
     switch (action.type) {
         case SET_DATA: {
             return {
@@ -57,12 +57,12 @@ type SetDataAT = {
     type: typeof SET_DATA
     payload: DataType
 }
-export const setDataAC = (payload: DataType): SetDataAT => ({
+ const setDataAC = (payload: DataType): SetDataAT => ({
     type: SET_DATA,
     payload: payload
 })
 //--------------------------------------SET-INITIALIZED-TC-------------------------------
-export const setDataTC = () => async (dispatch: Dispatch) => {
-    let response = await UserAPI.getData()
-    dispatch(setDataAC(response))
+ const setDataTC = () => async (dispatch: Dispatch) => {
+ /*   let response = await UserAPI.getData()
+    dispatch(setDataAC(response))*/
 }

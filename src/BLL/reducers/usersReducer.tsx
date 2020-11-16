@@ -39,7 +39,7 @@ let initialState: UsersType = {
     users: []
 }
 
-export const usersReducer = (state: UsersType = initialState, action: ActionType): UsersType => {
+ const usersReducer = (state: UsersType = initialState, action: ActionType): UsersType => {
     switch (action.type) {
         case SET_DATA: {
             return {
@@ -59,25 +59,26 @@ type SetDataAT = {
     type: typeof SET_DATA
     payload: UsersType
 }
-export const setUsersDataAC = (payload: UsersType): SetDataAT => ({
+ const setUsersDataAC = (payload: UsersType): SetDataAT => ({
     type: SET_DATA,
     payload: payload
 })
 //--------------------------------------SET-INITIALIZED-TC-------------------------------
-export const setUsersDataTC = () => async (dispatch: Dispatch, getState: () => StateType) => {
-    let response = await UserAPI.getUsersInfo()
-    console.log(response)
+ const setUsersDataTC = () => async (dispatch: Dispatch, getState: () => StateType) => {
+/*    const response = await UserAPI.getUsersInfo()
     dispatch(setUsersDataAC(response))
 
-    let aboutUser = await getfp()
-    let id = aboutUser.visitorId
-    let ip = getState().ipInfo.query
+    const id = getState().fingerPrintInfo.visitorId
+    const ip = getState().ipInfo.query
 
-    let payload: UsersType = {
-        users: [{id, ip}]
-    }
+    const newId = getState().fingerPrintInfo.visitorId
+    let filteredArray = getState().usersInfo.users.filter(el => el.id === newId)
+debugger
+    if (filteredArray.length === 0) {
 
-    dispatch(setUsersDataAC(payload))
+        dispatch(setUsersDataAC({ users: [{id, ip}]}))
+        UserAPI.writeInformation(getState().usersInfo)
+    }*/
 
-    UserAPI.writeInformation(getState().usersInfo)
+
 }
