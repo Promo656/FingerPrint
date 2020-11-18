@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/FingerPrint/static/css/main.38069c90.chunk.css",
-    "main.js": "/FingerPrint/static/js/main.dcc9310c.chunk.js",
-    "main.js.map": "/FingerPrint/static/js/main.dcc9310c.chunk.js.map",
+    "main.js": "/FingerPrint/static/js/main.748c39cf.chunk.js",
+    "main.js.map": "/FingerPrint/static/js/main.748c39cf.chunk.js.map",
     "runtime-main.js": "/FingerPrint/static/js/runtime-main.88d8e77a.js",
     "runtime-main.js.map": "/FingerPrint/static/js/runtime-main.88d8e77a.js.map",
     "static/css/2.ea9b1cc9.chunk.css": "/FingerPrint/static/css/2.ea9b1cc9.chunk.css",
@@ -20,6 +20,6 @@
     "static/css/2.ea9b1cc9.chunk.css",
     "static/js/2.8933ae2b.chunk.js",
     "static/css/main.38069c90.chunk.css",
-    "static/js/main.dcc9310c.chunk.js"
+    "static/js/main.748c39cf.chunk.js"
   ]
 }
