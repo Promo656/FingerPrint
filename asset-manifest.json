@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/FingerPrint/static/css/main.f163af30.chunk.css",
-    "main.js": "/FingerPrint/static/js/main.c3f87e17.chunk.js",
-    "main.js.map": "/FingerPrint/static/js/main.c3f87e17.chunk.js.map",
-    "runtime-main.js": "/FingerPrint/static/js/runtime-main.88d8e77a.js",
-    "runtime-main.js.map": "/FingerPrint/static/js/runtime-main.88d8e77a.js.map",
+    "main.css": "/FingerPrint/static/css/main.36209c20.chunk.css",
+    "main.js": "/FingerPrint/static/js/main.b86e9613.chunk.js",
+    "main.js.map": "/FingerPrint/static/js/main.b86e9613.chunk.js.map",
+    "runtime-main.js": "/FingerPrint/static/js/runtime-main.e2ed9bb7.js",
+    "runtime-main.js.map": "/FingerPrint/static/js/runtime-main.e2ed9bb7.js.map",
     "static/css/2.ea9b1cc9.chunk.css": "/FingerPrint/static/css/2.ea9b1cc9.chunk.css",
-    "static/js/2.8933ae2b.chunk.js": "/FingerPrint/static/js/2.8933ae2b.chunk.js",
-    "static/js/2.8933ae2b.chunk.js.map": "/FingerPrint/static/js/2.8933ae2b.chunk.js.map",
-    "static/js/3.5f2d5dfc.chunk.js": "/FingerPrint/static/js/3.5f2d5dfc.chunk.js",
-    "static/js/3.5f2d5dfc.chunk.js.map": "/FingerPrint/static/js/3.5f2d5dfc.chunk.js.map",
+    "static/js/2.9ed84ffe.chunk.js": "/FingerPrint/static/js/2.9ed84ffe.chunk.js",
+    "static/js/2.9ed84ffe.chunk.js.map": "/FingerPrint/static/js/2.9ed84ffe.chunk.js.map",
+    "static/js/3.604cc0cb.chunk.js": "/FingerPrint/static/js/3.604cc0cb.chunk.js",
+    "static/js/3.604cc0cb.chunk.js.map": "/FingerPrint/static/js/3.604cc0cb.chunk.js.map",
     "index.html": "/FingerPrint/index.html",
     "static/css/2.ea9b1cc9.chunk.css.map": "/FingerPrint/static/css/2.ea9b1cc9.chunk.css.map",
-    "static/css/main.f163af30.chunk.css.map": "/FingerPrint/static/css/main.f163af30.chunk.css.map",
-    "static/js/2.8933ae2b.chunk.js.LICENSE.txt": "/FingerPrint/static/js/2.8933ae2b.chunk.js.LICENSE.txt"
+    "static/css/main.36209c20.chunk.css.map": "/FingerPrint/static/css/main.36209c20.chunk.css.map",
+    "static/js/2.9ed84ffe.chunk.js.LICENSE.txt": "/FingerPrint/static/js/2.9ed84ffe.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.88d8e77a.js",
+    "static/js/runtime-main.e2ed9bb7.js",
     "static/css/2.ea9b1cc9.chunk.css",
-    "static/js/2.8933ae2b.chunk.js",
-    "static/css/main.f163af30.chunk.css",
-    "static/js/main.c3f87e17.chunk.js"
+    "static/js/2.9ed84ffe.chunk.js",
+    "static/css/main.36209c20.chunk.css",
+    "static/js/main.b86e9613.chunk.js"
   ]
 }
