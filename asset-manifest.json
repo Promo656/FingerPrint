@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/FingerPrint/static/css/main.38069c90.chunk.css",
-    "main.js": "/FingerPrint/static/js/main.8258f281.chunk.js",
-    "main.js.map": "/FingerPrint/static/js/main.8258f281.chunk.js.map",
+    "main.css": "/FingerPrint/static/css/main.f163af30.chunk.css",
+    "main.js": "/FingerPrint/static/js/main.c3f87e17.chunk.js",
+    "main.js.map": "/FingerPrint/static/js/main.c3f87e17.chunk.js.map",
     "runtime-main.js": "/FingerPrint/static/js/runtime-main.88d8e77a.js",
     "runtime-main.js.map": "/FingerPrint/static/js/runtime-main.88d8e77a.js.map",
     "static/css/2.ea9b1cc9.chunk.css": "/FingerPrint/static/css/2.ea9b1cc9.chunk.css",
@@ -12,14 +12,14 @@
     "static/js/3.5f2d5dfc.chunk.js.map": "/FingerPrint/static/js/3.5f2d5dfc.chunk.js.map",
     "index.html": "/FingerPrint/index.html",
     "static/css/2.ea9b1cc9.chunk.css.map": "/FingerPrint/static/css/2.ea9b1cc9.chunk.css.map",
-    "static/css/main.38069c90.chunk.css.map": "/FingerPrint/static/css/main.38069c90.chunk.css.map",
+    "static/css/main.f163af30.chunk.css.map": "/FingerPrint/static/css/main.f163af30.chunk.css.map",
     "static/js/2.8933ae2b.chunk.js.LICENSE.txt": "/FingerPrint/static/js/2.8933ae2b.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.88d8e77a.js",
     "static/css/2.ea9b1cc9.chunk.css",
     "static/js/2.8933ae2b.chunk.js",
-    "static/css/main.38069c90.chunk.css",
-    "static/js/main.8258f281.chunk.js"
+    "static/css/main.f163af30.chunk.css",
+    "static/js/main.c3f87e17.chunk.js"
   ]
 }
