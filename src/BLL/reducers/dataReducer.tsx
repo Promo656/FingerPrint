@@ -4,42 +4,58 @@ import {Dispatch} from "redux";
 type ActionType = SetDataAT
 
 type DataType = {
-    businessName: string
-    businessWebsite: string
-    city: string
-    continent: string
-    country: string
-    countryCode: string
-    ipName: string
-    ipType: string
-    isp: string
-    lat: string
-    lon: string
-    org: string
-    query: string
-    region: string
-    status: string
+    ipData: {
+        businessName: string
+        businessWebsite: string
+        city: string
+        continent: string
+        country: string
+        countryCode: string
+        ipName: string
+        ipType: string
+        isp: string
+        lat:string
+        lon: string
+        org: string
+        query: string
+        region:string
+        status: string
+    }
+    privacyData: {
+        vpn: boolean,
+        proxy: boolean,
+        tor: boolean,
+        hosting: boolean
+    }
 }
 
 let initialState: DataType = {
-    businessName: " ",
-    businessWebsite: "",
-    city: "",
-    continent: "",
-    country: "",
-    countryCode: "",
-    ipName: "",
-    ipType: "",
-    isp: "",
-    lat: "",
-    lon: "",
-    org: "",
-    query: "",
-    region: "",
-    status: ""
+    ipData: {
+        businessName: "",
+        businessWebsite: "",
+        city: "",
+        continent: "",
+        country: "",
+        countryCode: "",
+        ipName: "",
+        ipType: "",
+        isp: "",
+        lat:"",
+        lon: "",
+        org: "",
+        query: "",
+        region:"",
+        status: "",
+    },
+    privacyData: {
+        vpn: false,
+        proxy: false,
+        tor: false,
+        hosting: false
+    }
 }
 
- const dataReducer = (state: DataType = initialState, action: ActionType): DataType => {
+export const dataReducer = (state:DataType = initialState, action: ActionType):DataType => {
     switch (action.type) {
         case SET_DATA: {
             return {
@@ -57,12 +73,14 @@ type SetDataAT = {
     type: typeof SET_DATA
     payload: DataType
 }
- const setDataAC = (payload: DataType): SetDataAT => ({
+export const setDataAC = (payload: any): SetDataAT => ({
     type: SET_DATA,
     payload: payload
 })
 //--------------------------------------SET-INITIALIZED-TC-------------------------------
- const setDataTC = () => async (dispatch: Dispatch) => {
- /*   let response = await UserAPI.getData()
-    dispatch(setDataAC(response))*/
+export const setDataTC = () => async (dispatch: Dispatch<any>) => {
+    let response = await UserAPI.getIpData()
+
+    console.log(response)
+    dispatch(setDataAC(response));
 }

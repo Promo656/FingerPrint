@@ -11,7 +11,7 @@ let initialState: ViewCountType = {
     count: 0
 }
 
- const viewCounterReducer = (state: ViewCountType = initialState, action: ActionType): ViewCountType => {
+export const viewCounterReducer = (state: ViewCountType = initialState, action: ActionType): ViewCountType => {
     switch (action.type) {
         case SET_DATA: {
             return {
@@ -30,21 +30,28 @@ type SetDataAT = {
     type: typeof SET_DATA
     payload: ViewCountType
 }
- const setCountDataAC = (payload: ViewCountType): SetDataAT => ({
+export const setCountDataAC = (payload: ViewCountType): SetDataAT => ({
     type: SET_DATA,
     payload: payload
 })
 //--------------------------------------SET-INITIALIZED-TC-------------------------------
- const setViewCountDataTC = () => async (dispatch: Dispatch, getState: () => StateType) => {
+export const setViewCountDataTC = () => async (dispatch: Dispatch<any>, getState: () => StateType) => {
 
-/*    const viewCountData = await UserAPI.getViewCountData()
-    dispatch(setCountDataAC(viewCountData))
+   /* let viewCountData = await UserAPI.getViewCountData()
+    console.log(viewCountData)
+    dispatch(setCountDataAC(viewCountData))*/
 
-    const newId = getState().fingerPrintInfo.visitorId
-    let filteredArray = getState().usersInfo.users.filter(el => el.id === newId)
-debugger
+
+/*    let newId = getState().currentFPUserInfo.visitorId
+    let newIp = getState().currentIpUserInfo.query
+
+
+    let filteredArray = getState().savedUsers.users.filter(el => el.id === newId || el.ip === newIp)
+
     if (filteredArray.length === 0) {
-        const count = getState().viewCount.count += 1
-        await UserAPI.incrementCount(count)
+
     }*/
+    const count = getState().viewCount.count += 1
+    await UserAPI.incrementCount(count)
+
 }

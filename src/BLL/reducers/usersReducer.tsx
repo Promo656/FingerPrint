@@ -2,6 +2,7 @@ import {Dispatch} from "redux";
 import {UserAPI} from "../../DAL/API/api";
 import {StateType} from "../Store/redux-store";
 import {getfp} from "../Tools/FingerPrint";
+import {setViewCountDataTC} from "./visitorCounterReducer";
 
 /*
 type UserType = {
@@ -29,6 +30,8 @@ type ActionType = SetDataAT
 type UserType = {
     id: string
     ip: string
+    platform:string
+
 }
 export type UsersType = {
     users: UserType[]
@@ -36,10 +39,12 @@ export type UsersType = {
 }
 let initialState: UsersType = {
 
-    users: []
+    users: [
+        /*  {ip:"",id:""}*/
+    ]
 }
 
- const usersReducer = (state: UsersType = initialState, action: ActionType): UsersType => {
+export const usersReducer = (state: UsersType = initialState, action: ActionType): UsersType => {
     switch (action.type) {
         case SET_DATA: {
             return {
@@ -59,26 +64,26 @@ type SetDataAT = {
     type: typeof SET_DATA
     payload: UsersType
 }
- const setUsersDataAC = (payload: UsersType): SetDataAT => ({
+export const setUsersDataAC = (payload: UsersType): SetDataAT => ({
     type: SET_DATA,
     payload: payload
 })
 //--------------------------------------SET-INITIALIZED-TC-------------------------------
- const setUsersDataTC = () => async (dispatch: Dispatch, getState: () => StateType) => {
-/*    const response = await UserAPI.getUsersInfo()
-    dispatch(setUsersDataAC(response))
+export const setUsersDataTC = () => async (dispatch: Dispatch<any>, getState: () => StateType) => {
+    /* let response = await UserAPI.getUsersInfo()
+     dispatch(setUsersDataAC(response))*/
 
-    const id = getState().fingerPrintInfo.visitorId
-    const ip = getState().ipInfo.query
+    let id = getState().currentFPUserInfo.visitorId
+    let ip = getState().currentIpUserInfo.ipData.query
+    let platform = getState().currentFPUserInfo.userPlatform
 
-    const newId = getState().fingerPrintInfo.visitorId
-    let filteredArray = getState().usersInfo.users.filter(el => el.id === newId)
-debugger
+
+    let filteredArray = getState().savedUsers.users.filter(el => (el.id === id && el.platform===platform)|| el.ip === ip )
+
     if (filteredArray.length === 0) {
-
-        dispatch(setUsersDataAC({ users: [{id, ip}]}))
-        UserAPI.writeInformation(getState().usersInfo)
-    }*/
-
+        dispatch(setUsersDataAC({users: [{id, ip, platform}]}))
+        await UserAPI.writeInformation(getState().savedUsers)
+        dispatch(setViewCountDataTC())
+    }
 
 }

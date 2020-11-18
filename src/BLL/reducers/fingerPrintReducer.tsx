@@ -1,5 +1,6 @@
 import {Dispatch} from "redux";
 import {getfp} from "../Tools/FingerPrint";
+import {setUsersDataTC} from "./usersReducer";
 
 type ActionType = SetDataAT
 /*type FingerPrintType = {
@@ -126,14 +127,22 @@ type ActionType = SetDataAT
         duration: number
     }
 }*/
-type FingerPrintType={
-    visitorId:string
+type FingerPrintType = {
+    visitorId: string
+    userPlatform: string
+/*    deviceMemory:number
+    visitorProductSub:string
+    visitorScreenResolution:Array<number>*/
 }
-let initialState:FingerPrintType = {
-    visitorId:""
+let initialState: FingerPrintType = {
+    visitorId: "",
+    userPlatform: "",
+/*    deviceMemory:0,
+    visitorProductSub:"",
+    visitorScreenResolution:[]*/
 }
 
- const fingerPrintReducer = (state:FingerPrintType = initialState, action: ActionType):FingerPrintType => {
+export const fingerPrintReducer = (state = initialState, action: ActionType) => {
     switch (action.type) {
         case SET_DATA: {
             return {
@@ -143,6 +152,7 @@ let initialState:FingerPrintType = {
         }
         default:
             return state
+
     }
 }
 //--------------------------------------SET-DATA-AC-------------------------------
@@ -151,12 +161,19 @@ type SetDataAT = {
     type: typeof SET_DATA
     payload: FingerPrintType
 }
- const setDataAC = (payload: any): SetDataAT => ({
+export const setDataAC = (payload: FingerPrintType): SetDataAT => ({
     type: SET_DATA,
     payload: payload
 })
 //--------------------------------------SET-INITIALIZED-TC-------------------------------
- const setFingerPrintTC = () => async (dispatch: Dispatch) => {
-    let fingerPrint = await getfp()
-    dispatch(setDataAC(fingerPrint))
+export const setFingerPrintTC = () => async (dispatch: Dispatch<any>) => {
+    let visitor = await getfp()
+    let visitorId=visitor.visitorId
+    let visitorDeviceMemory=visitor.components.deviceMemory.value
+    let visitorProductSub=visitor.components.productSub.value
+    let visitorScreenResolution= visitor.components.screenResolution.value
+    let userPlatform = await window.navigator.platform
+    dispatch(setDataAC({visitorId, userPlatform}))
+
+
 }
