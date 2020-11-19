@@ -1,17 +1,11 @@
 import React from "react";
 import {connect} from "react-redux";
 import {StateType} from "./BLL/Store/redux-store";
-import {setInitializedTC} from "./BLL/reducers/appReducer";
+import {HeadersType, setInitializedTC} from "./BLL/reducers/appReducer";
 import {CircularProgress, Paper} from "@material-ui/core";
 import style from "./App.module.scss"
-import done from "./UI/icon/checkmark.png"
-import fault from "./UI/icon/error.png"
-import provider from "./UI/icon/hosting.png"
-import location from "./UI/icon/location.png"
-import ip from "./UI/icon/ip.png"
-import countOfView from "./UI/icon/view.png"
-
-
+import {Card} from "./UI/Components/Card/Card";
+import {Privacy} from "./UI/Components/Privacy/Privacy";
 
 type MSTP = {
     initialized: boolean
@@ -23,6 +17,7 @@ type MSTP = {
     proxy: boolean
     tor: boolean
     vpn: boolean
+    headers: HeadersType
 }
 type MDTP = {
     setInitializedTC: () => void
@@ -31,57 +26,31 @@ type AppPropsType = MSTP & MDTP
 
 class App extends React.Component<AppPropsType> {
     componentDidMount() {
-
         this.props.setInitializedTC()
     }
 
     render() {
-
         if (!this.props.initialized) {
-            return <CircularProgress className={style.preLoader}/>
+            return <CircularProgress/>
         }
 
         return (
             <Paper elevation={6} className={style.wrap}>
-                <div className={style.cardBlock}>
-                    <div className={style.card}>
-                        <img src={ip} alt=""/>
-                        <span className={style.card_data}>{this.props.ip}</span>
-                    </div>
-                    <div className={style.card}>
-                        <img src={location} alt=""/>
-                        <span className={style.card_data}>{`${this.props.country}, ${this.props.city}`}</span>
-                    </div>
-                    <div className={style.card}>
-                        <img src={provider} alt=""/>
-                        <span className={style.card_data}>{this.props.provider}</span>
-                    </div>
-                    <div className={style.card}>
-                        <img src={countOfView} alt=""/>
-                        <span className={style.card_data}>{this.props.viewCount}</span>
-                    </div>
-                </div>
-                <div></div>
-
-                <div className={style.privacy}>
-                    <div className={style.privacy_card}>
-                        <span>
-                            {this.props.vpn ? <img src={done}/> : <img src={fault}/>}</span>
-                        <span>VPN</span>
-                    </div>
-                    <div className={style.privacy_card}>
-                        <span>
-                            {this.props.tor ? <img src={done}/> : <img src={fault}/>}</span>
-                        <span>TOR</span>
-                    </div>
-                    <div className={style.privacy_card}>
-                        <span>
-                            {this.props.proxy ? <img src={done}/> : <img src={fault}/>}</span>
-                        <span>PROXY</span>
-                    </div>
-                </div>
+                <Card
+                    ip={this.props.ip}
+                    viewCount={this.props.viewCount}
+                    city={this.props.city}
+                    country={this.props.country}
+                    provider={this.props.provider}
+                    headers={this.props.headers}
+                />
+                <Privacy
+                    proxy={this.props.proxy}
+                    tor={this.props.tor}
+                    vpn={this.props.vpn}
+                />
             </Paper>
-        );
+        )
     }
 }
 
@@ -94,7 +63,9 @@ const mapStateToProps = (store: StateType) => ({
     provider: store.currentIpUserInfo.ipData.org,
     proxy: store.currentIpUserInfo.privacyData.proxy,
     tor: store.currentIpUserInfo.privacyData.tor,
-    vpn: store.currentIpUserInfo.privacyData.vpn
+    vpn: store.currentIpUserInfo.privacyData.vpn,
+    headers: store.app.headers
 })
 
 export default connect(mapStateToProps, {setInitializedTC})(App)
+

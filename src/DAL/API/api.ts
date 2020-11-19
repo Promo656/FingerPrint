@@ -6,7 +6,6 @@ export const UserAPI = {
         let ipData = await axios.get(`https://extreme-ip-lookup.com/json`)
         let ip = ipData.data.query
         let privacyData = await axios.get(`https://ipinfo.io/${ip}/privacy?token=51ae735c253db0`)
-        debugger
         return {ipData: ipData.data, privacyData: privacyData.data}
 
     },
@@ -20,11 +19,11 @@ export const UserAPI = {
     },
 
     async writeInformation(payload: UsersType) {
-        let response = await axios.put(`https://counter-d86e4.firebaseio.com/userDdata.json`, {users: payload.users})
+        let response = await axios.put(`https://counter-d86e4.firebaseio.com/usersData.json`, {users: payload.users})
         return response.data
     },
     async getUsersInfo() {
-        let response = await axios.get(`https://counter-d86e4.firebaseio.com/userDdata.json`)
+        let response = await axios.get(`https://counter-d86e4.firebaseio.com/usersData.json`)
         return response.data
     }
 }

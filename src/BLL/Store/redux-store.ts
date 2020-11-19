@@ -1,21 +1,26 @@
-import {applyMiddleware, combineReducers, compose, createStore} from "redux";
+import {applyMiddleware, combineReducers, createStore} from "redux";
 import thinkMiddleware from "redux-thunk"
-import {appReducer} from "../reducers/appReducer";
-import {dataReducer} from "../reducers/dataReducer";
-import {fingerPrintReducer} from "../reducers/fingerPrintReducer";
-import {viewCounterReducer} from "../reducers/visitorCounterReducer";
-import {usersReducer} from "../reducers/usersReducer";
-
+import {AppActionType, appReducer} from "../reducers/appReducer";
+import {iPdataReducer, IpDataActionType} from "../reducers/iPdataReducer";
+import {FingerPrintActionsType, fingerPrintReducer} from "../reducers/fingerPrintReducer";
+import {ViewCounterActionType, viewCounterReducer} from "../reducers/visitorCounterReducer";
+import {UserActionType, usersReducer} from "../reducers/usersReducer";
 
 const reducers = combineReducers({
     app: appReducer,
-    currentIpUserInfo: dataReducer,
+    currentIpUserInfo: iPdataReducer,
     currentFPUserInfo: fingerPrintReducer,
     viewCount: viewCounterReducer,
     savedUsers: usersReducer
 })
-const composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-export const store = createStore(reducers, composeEnhancers(applyMiddleware(thinkMiddleware)))
+
+export const store = createStore(reducers, applyMiddleware(thinkMiddleware))
 export type StateType = ReturnType<typeof reducers>
+export type  AppActionsType =
+    AppActionType
+    | IpDataActionType
+    | FingerPrintActionsType
+    | UserActionType
+    | ViewCounterActionType
 //@ts-ignore
 window.store = store

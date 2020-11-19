@@ -1,89 +1,69 @@
-import {Dispatch} from "redux";
 import {UserAPI} from "../../DAL/API/api";
-import {StateType} from "../Store/redux-store";
-import {getfp} from "../Tools/FingerPrint";
+import {AppActionsType, StateType} from "../Store/redux-store";
 import {setViewCountDataTC} from "./visitorCounterReducer";
+import {ThunkAction, ThunkDispatch} from "redux-thunk";
 
-/*
-type UserType = {
-    user: {
-        id: string
-        ip: string
-    }
-
-}
-type UsersType = {
-    users: UserType
-    usersCount: number
-}
-let initialState: UsersType = {
-    usersCount: 0,
-    users: {
-        user: {id: "", ip: ""},
-        user:{id: "", ip: ""}
-    }
-}
-*/
-
-type ActionType = SetDataAT
+export type UserActionType = SetUserDataAT
 
 type UserType = {
-    id: string
-    ip: string
-    platform:string
+    userIp: string
+    userId: string
 
 }
+
 export type UsersType = {
     users: UserType[]
-
 }
+
 let initialState: UsersType = {
-
-    users: [
-        /*  {ip:"",id:""}*/
-    ]
+    users: []
 }
 
-export const usersReducer = (state: UsersType = initialState, action: ActionType): UsersType => {
+export const usersReducer = (state: UsersType = initialState, action: UserActionType): UsersType => {
     switch (action.type) {
         case SET_DATA: {
             return {
                 ...state,
-
                 users: [...state.users, ...action.payload.users]
             }
         }
         default:
             return state
-
     }
 }
-//--------------------------------------SET-DATA-AC-------------------------------
+//--------------------------------------SET-USER-AC-------------------------------
 const SET_DATA = "usersReducer/SET_DATA"
-type SetDataAT = {
+type SetUserDataAT = {
     type: typeof SET_DATA
     payload: UsersType
 }
-export const setUsersDataAC = (payload: UsersType): SetDataAT => ({
+export const setUsersDataAC = (payload: UsersType): SetUserDataAT => ({
     type: SET_DATA,
     payload: payload
 })
-//--------------------------------------SET-INITIALIZED-TC-------------------------------
-export const setUsersDataTC = () => async (dispatch: Dispatch<any>, getState: () => StateType) => {
-    /* let response = await UserAPI.getUsersInfo()
-     dispatch(setUsersDataAC(response))*/
+//--------------------------------------SET-USER-TC-------------------------------
+type ThunkType = ThunkAction<void, StateType, unknown, AppActionsType>
 
+export const setUsersDataTC = (): ThunkType => async (dispatch: ThunkDispatch<StateType, unknown, AppActionsType>, getState: () => StateType) => {
     let id = getState().currentFPUserInfo.visitorId
     let ip = getState().currentIpUserInfo.ipData.query
-    let platform = getState().currentFPUserInfo.userPlatform
 
-
-    let filteredArray = getState().savedUsers.users.filter(el => (el.id === id && el.platform===platform)|| el.ip === ip )
+    let filteredArray = getState().savedUsers.users.filter(el => {
+            return el.userId === id || el.userIp === ip
+        }
+    )
 
     if (filteredArray.length === 0) {
-        dispatch(setUsersDataAC({users: [{id, ip, platform}]}))
+        let payload: UsersType = {
+            users: [
+                {
+                    userId: id,
+                    userIp: ip,
+                }
+            ]
+        }
+        await dispatch(setUsersDataAC(payload))
         await UserAPI.writeInformation(getState().savedUsers)
-        dispatch(setViewCountDataTC())
+        await dispatch(setViewCountDataTC())
     }
-
 }
